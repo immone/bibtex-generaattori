@@ -1,9 +1,9 @@
 from init import app, db
+import routes
 
-@app.route("/")
-def frontpage():
+def get_start_date():
     start_date = db.session.scalars('SELECT start_date FROM start_dates').first()
-    return f'<title>Bibtex generaattori</title><h1>Tervetuloa bibtex generaattoriin. Sovelluksessa käytiin ensimmäistä kertaa {start_date}.</h1>'
+    return start_date
 
 # Delete everything below, when we have actual database code
 import signal, os
