@@ -7,3 +7,7 @@ Suite Teardown  Close Browser
 Go To Main Page And Check Title
     Go To Main Page
     Main Page Should Be Open
+
+Go To Send Page And Check Title
+    Go To Send Page
+    Send Page Should Be Open
