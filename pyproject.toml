@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Roni Hokkanen <roni.hokkanen@protonmail.com>"]
 readme = "README.md"
-packages = [{include = "bibtex_generaattori"}]
+packages = [{include = "bibtex-generaattori"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
