@@ -23,3 +23,9 @@ def save_to_db(author, title, year):
     sql = 'INSERT INTO citations (author, title, year) VALUES (:author, :title, :year)'
     db.session.execute(sql, {'author':author, 'title':title, 'year':year})
     db.session.commit()
+
+@app.route('/references')
+def check_db_contents():
+    sql = 'SELECT * FROM citations'
+    citations = db.session.execute(sql).fetchall()
+    return render_template("check_references.html", count=len(citations), citations=citations)
