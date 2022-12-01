@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Roni Hokkanen <roni.hokkanen@protonmail.com>"]
 readme = "README.md"
-packages = [{include = "bibtex_generaattori"}]
+#packages = [{include = "bibtex-generaattori"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -16,6 +16,8 @@ python-dotenv = "^0.21.0"
 pytest = "^7.2.0"
 robotframework = "^6.0.1"
 robotframework-seleniumlibrary = "^6.0.0"
+coverage = "^6.5.0"
+pylint = "^2.15.7"
 
 [build-system]
 requires = ["poetry-core"]

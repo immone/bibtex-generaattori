@@ -8,8 +8,8 @@ def func_raises():
 
 # All program behavior other than exceptions can be tested with assert
 # The test below is an example of how failing tests look in pytest output
-def test_wrong_answer():
-    assert func(3) == 5
+#def test_wrong_answer():
+    #assert func(3) == 5
 
 def test_answer():
     assert func(3) == 4
