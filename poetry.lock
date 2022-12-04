@@ -328,6 +328,21 @@ spelling = ["pyenchant (>=3.2,<4.0)"]
 testutils = ["gitpython (>3)"]
 
 [[package]]
+name = "pylint-flask-sqlalchemy"
+version = "0.2.0"
+description = "A Pylint plugin for improving code analysis when editing code using Flask-SQLAlchemy"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+Flask-SQLAlchemy = ">=2"
+pylint = "*"
+
+[package.extras]
+dev = ["black", "bump2version", "gitchangelog", "mypy", "pystache"]
+
+[[package]]
 name = "pyparsing"
 version = "3.0.9"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
@@ -587,7 +602,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "c3970eb7590b39f3acaf18477b9da8349d96ec2ec40c15b4b56bb429e8c717ac"
+content-hash = "88d520a98b2830a0400110738acb61e0f81f8ce92da165900accf62ae7e58d9d"
 
 [metadata.files]
 astroid = [
@@ -928,6 +943,10 @@ pycparser = [
 pylint = [
     {file = "pylint-2.15.7-py3-none-any.whl", hash = "sha256:1d561d1d3e8be9dd880edc685162fbdaa0409c88b9b7400873c0cf345602e326"},
     {file = "pylint-2.15.7.tar.gz", hash = "sha256:91e4776dbcb4b4d921a3e4b6fec669551107ba11f29d9199154a01622e460a57"},
+]
+pylint-flask-sqlalchemy = [
+    {file = "pylint_flask_sqlalchemy-0.2.0-py3-none-any.whl", hash = "sha256:27f1fffb940adc9ac8f00ff7eb91ec39ca070c0f3bcec0d7f1c702a993d40505"},
+    {file = "pylint_flask_sqlalchemy-0.2.0.tar.gz", hash = "sha256:8ede5baba1a465d8ba39d8383ffcf0889d7a6afeff44bd24177fcf529ba8aa81"},
 ]
 pyparsing = [
     {file = "pyparsing-3.0.9-py3-none-any.whl", hash = "sha256:5026bae9a10eeaefb61dab2f09052b9f4307d44aee4eda64b309723d8d206bbc"},
