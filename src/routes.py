@@ -32,8 +32,8 @@ def save_to_db(author, title, year):
         year=year,
         type_id=1
     )
-    db.session.add(new)
-    db.session.commit()
+    db.session.add(new)  # pylint: disable=no-member
+    db.session.commit()  # pylint: disable=no-member
 
 
 @app.route('/references')
