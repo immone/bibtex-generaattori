@@ -1,9 +1,7 @@
-from init import app, db
-import routes
+"""Run app."""
+from init import app
+import routes  # pylint: disable=unused-import
 
 
-try:
-    db.session.execute('CREATE TABLE citations (author varchar, title varchar, year int)')
-    db.session.commit()
-except:
-    print('Table already created to database')
+if __name__ == '__main__':
+    app.run()
