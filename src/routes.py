@@ -1,31 +1,47 @@
-from app import app, db
+"""Module for all different routes of the app."""
 from flask import render_template, request, redirect
+from init import app, db, Reference
 
 
 @app.route('/')
 def index():
+    """Index page."""
     return render_template('index.html')
+
 
 @app.route('/edit', methods=['GET', 'POST'])
 def send_reference():
+    """New reference page."""
     if request.method == 'GET':
         return render_template('send_reference.html')
 
-    if request.method == 'POST':
-        author = request.form['author']
-        title = request.form['title']
-        year = request.form['year']
-        save_to_db(author, title, year)
-        return redirect('/')
+    author = request.form['author']
+    title = request.form['title']
+    year = request.form['year']
+    save_to_db(author, title, year)
+    return redirect('/')
+
 
 def save_to_db(author, title, year):
+    """Save form data to database."""
     print('Save to db', author, title, year)
-    sql = 'INSERT INTO citations (author, title, year) VALUES (:author, :title, :year)'
-    db.session.execute(sql, {'author':author, 'title':title, 'year':year})
-    db.session.commit()
+    new = Reference(
+        author=author,
+        title=title,
+        booktitle=None,
+        year=year,
+        type_id=1
+    )
+    db.session.add(new)  # pylint: disable=no-member
+    db.session.commit()  # pylint: disable=no-member
+
 
 @app.route('/references')
 def check_db_contents():
-    sql = 'SELECT * FROM citations'
-    citations = db.session.execute(sql).fetchall()
-    return render_template("check_references.html", count=len(citations), citations=citations)
+    """Page for viewing all references."""
+    citations = Reference.query.all()
+    return render_template(
+        "check_references.html",
+        count=len(citations),
+        citations=citations
+    )
