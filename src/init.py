@@ -12,7 +12,7 @@ load_dotenv()
 app.secret_key = getenv('SECRET_KEY')
 
 # Initialize db
-app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
