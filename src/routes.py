@@ -1,23 +1,24 @@
 """Module for all different routes of the app."""
 from flask import render_template, request, redirect
-from init import app, db, Reference
+from init import app
+from services import Services
 
+service = Services()
 
 @app.route('/')
-def check_db_contents():
+def index():
     """Page for viewing all references."""
-    citations = Reference.query.all()
+    citations = service.get_db_contents()
     return render_template(
-        "check_references.html",
+        'check_references.html',
         count=len(citations),
         citations=citations
     )
 
-@app.route('/type', methods=['GET', 'POST'])
+@app.route('/type')
 def choose_reference_type():
     """Page for choosing refence type."""
-    if request.method == 'GET':
-        return render_template('choose_reference_type.html')
+    return render_template('choose_reference_type.html')
 
 @app.route('/edit', methods=['GET', 'POST'])
 def send_reference():
@@ -28,9 +29,8 @@ def send_reference():
     author = request.form['author']
     title = request.form['title']
     year = request.form['year']
-    save_to_db(author, title, year)
+    service.save_to_db(author, title, year)
     return redirect('/')
-
 
 def save_to_db(author, title, year):
     """Save form data to database."""
@@ -44,5 +44,3 @@ def save_to_db(author, title, year):
     )
     db.session.add(new)  # pylint: disable=no-member
     db.session.commit()  # pylint: disable=no-member
-
-

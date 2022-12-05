@@ -42,10 +42,12 @@ class Type(db.Model):  # pylint: disable=too-few-public-methods
 with app.app_context():
     db.create_all()
 
-    # Try creating reference types
+    # Add new reference to the list below, they will be added to database
+    # and ignored if they already exist.
+    # Hardcode id to prevent differences between testing and production.
     types = [
-        Type(name='InCollection'),
-        Type(name='Book')
+        Type(id=1, name='InCollection'),
+        Type(id=2, name='Book')
     ]
 
     for type_ in types:
