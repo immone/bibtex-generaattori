@@ -27,7 +27,26 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
     booktitle = db.Column(db.String)
     year = db.Column(db.Integer)
     type_id = db.Column(db.Integer,db.ForeignKey('type.id'))
-    type = relationship('Type', viewonly=True)
+
+    def get_reference_tag(self) -> str:
+        """Generate citing tag, id + author surname + year."""
+        id_ = self.id if self.id else ''
+        # pylint: disable=no-member
+        author_surname = self.author.split()[-1] if self.author else ''
+        year = self.year if self.year else ''
+        return f'{id_}{author_surname}{year}'
+
+
+    def to_bibtex(self) -> str:
+        """Get reference in bibtex form."""
+        ref_type = Type.query.filter_by(id=self.type_id).first()
+        return (
+            f'@{ref_type.name}{"{"}{self.get_reference_tag()},'
+            f'author={"{"}{self.author if self.author else ""}{"}"},'
+            f'title={"{"}{self.title if self.title else ""}{"}"},'
+            f'booktitle={"{"}{self.booktitle if self.booktitle else ""}{"}"},'
+            f'year={"{"}{self.year if self.year else ""}{"}}"}'
+        )
 
 
 class Type(db.Model):  # pylint: disable=too-few-public-methods
