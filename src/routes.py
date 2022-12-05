@@ -31,16 +31,3 @@ def send_reference():
     year = request.form['year']
     service.save_to_db(author, title, year)
     return redirect('/')
-
-def save_to_db(author, title, year):
-    """Save form data to database."""
-    print('Save to db', author, title, year)
-    new = Reference(
-        author=author,
-        title=title,
-        booktitle=None,
-        year=year,
-        type_id=1
-    )
-    db.session.add(new)  # pylint: disable=no-member
-    db.session.commit()  # pylint: disable=no-member
