@@ -7,9 +7,18 @@ service = Services()
 
 @app.route('/')
 def index():
-    """Index page."""
-    return render_template('index.html')
+    """Page for viewing all references."""
+    citations = service.get_db_contents()
+    return render_template(
+        'check_references.html',
+        count=len(citations),
+        citations=citations
+    )
 
+@app.route('/type')
+def choose_reference_type():
+    """Page for choosing refence type."""
+    return render_template('choose_reference_type.html')
 
 @app.route('/edit', methods=['GET', 'POST'])
 def send_reference():
@@ -22,14 +31,3 @@ def send_reference():
     year = request.form['year']
     service.save_to_db(author, title, year)
     return redirect('/')
-
-
-@app.route('/references')
-def check_db_contents():
-    """Page for viewing all references."""
-    citations = service.get_db_contents()
-    return render_template(
-        'check_references.html',
-        count=len(citations),
-        citations=citations
-    )
