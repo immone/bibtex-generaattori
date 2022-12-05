@@ -4,10 +4,20 @@ from init import app, db, Reference
 
 
 @app.route('/')
-def index():
-    """Index page."""
-    return render_template('index.html')
+def check_db_contents():
+    """Page for viewing all references."""
+    citations = Reference.query.all()
+    return render_template(
+        "check_references.html",
+        count=len(citations),
+        citations=citations
+    )
 
+@app.route('/type', methods=['GET', 'POST'])
+def choose_reference_type():
+    """Page for choosing refence type."""
+    if request.method == 'GET':
+        return render_template('choose_reference_type.html')
 
 @app.route('/edit', methods=['GET', 'POST'])
 def send_reference():
@@ -36,12 +46,3 @@ def save_to_db(author, title, year):
     db.session.commit()  # pylint: disable=no-member
 
 
-@app.route('/references')
-def check_db_contents():
-    """Page for viewing all references."""
-    citations = Reference.query.all()
-    return render_template(
-        "check_references.html",
-        count=len(citations),
-        citations=citations
-    )
