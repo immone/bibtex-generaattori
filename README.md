@@ -7,5 +7,11 @@
 
 ## Definition of done
 
-Käyttäjä voi lisätä järjestelmään lähdeviitteen sekä tarkastella jo lisättyjä lähdeviitteitä. Testikattavuus on siedettävällä tasolla, eikä pylint tuota virheitä.
+- User storyt ja niiden hyväksymäkriteerit on dokumentoitu
+- Testit menevät läpi ja testikattavuus on kohtuullinen (n.70%)
+- Ohjelma läpäisee CI:n
+- Asiakas näkee koodin ja testien tilanteen CI-palvelusta
+- Jokaiselle pull requestille suoritetaan koodikatselmointi (peer review)
+- Koodi noudattaa yhtenäistä tyyliä (pylint käytössä)
+- Asiakas hyväksyy uusimman version
 
