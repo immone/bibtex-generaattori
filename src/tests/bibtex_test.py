@@ -1,6 +1,6 @@
 """App tests."""
 import pytest
-from init import Reference, Type, app
+from init import Reference, Type, app # pylint: disable=unused-import
 
 
 class TestReference:

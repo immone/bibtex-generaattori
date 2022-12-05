@@ -2,7 +2,6 @@
 from os import getenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship
 from dotenv import load_dotenv
 
 
