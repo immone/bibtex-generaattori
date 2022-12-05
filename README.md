@@ -1,5 +1,5 @@
 # bibtex-generaattori
-![GHA badge](https://github.com/henriimmonen/bibtex-generaattori/workflows/CI/badge.svg)
+![GHA badge](https://github.com/henriimmonen/bibtex-generaattori/workflows/CI/badge.svg)  
 [Linkki sovellukseen](https://ohtu.capscience.fi/)
 
 [Product backlog](https://docs.google.com/spreadsheets/d/1iF_o2BonsYtQlAYNAM78CDaxmr6lO7b8xHMP3yNJEwg/edit#gid=1)  
