@@ -1,5 +1,9 @@
 # bibtex-generaattori
-![GHA badge](https://github.com/henriimmonen/bibtex-generaattori/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/susannakinnunen/bibtex-generaattori/branch/main/graph/badge.svg?token=EDG3Z22SLI)](https://codecov.io/gh/susannakinnunen/bibtex-generaattori)
+
+![GHA badge](https://github.com/henriimmonen/bibtex-generaattori/workflows/CI/badge.svg)
+[![codecov](https://codecov.io/gh/henriimmonen/bibtex-generaattori/branch/main/graph/badge.svg?token=16U6BE0HDD)](https://codecov.io/gh/henriimmonen/bibtex-generaattori)  
+
+## [Linkki sovellukseen](https://ohtu.capscience.fi/)
 
 - [Linkki sovellukseen](https://ohtu.capscience.fi/) 
 - [Product backlog](https://docs.google.com/spreadsheets/d/1iF_o2BonsYtQlAYNAM78CDaxmr6lO7b8xHMP3yNJEwg/edit#gid=1)  
