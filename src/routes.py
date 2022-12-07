@@ -1,5 +1,5 @@
 """Module for all different routes of the app."""
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, send_file
 from init import app
 from services import Services
 from init import db
@@ -37,6 +37,6 @@ def send_reference():
 @app.route('/download', methods=['POST'])
 def download_references():
     """Download all references."""
-    #Download functionality here
-    print('Downloading references...')
-    return redirect('/')
+    service.create_bibtex_file()
+    
+    return send_file('references.bib', as_attachment=True)
