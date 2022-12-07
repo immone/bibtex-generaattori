@@ -7,9 +7,8 @@ class Services:
         pass
 
 
-    def save_to_db(self, author, title, year):
+    def save_to_db(self, author: str, title: str, year: str):
         """Save form data to database."""
-        print('Save to db', author, title, year)
         new = Reference(
             author=author,
             title=title,
@@ -20,7 +19,12 @@ class Services:
         db.session.add(new)  # pylint: disable=no-member
         db.session.commit()  # pylint: disable=no-member
 
-
     def get_db_contents(self):
         """Get references from database"""
         return Reference.query.all()
+
+    def remove_from_db(self, ref_id: int):
+        """Remove reference from database"""
+        reference = Reference.query.filter_by(id=ref_id).one()
+        db.session.delete(reference) # pylint: disable=no-member
+        db.session.commit() # pylint: disable=no-member
