@@ -9,7 +9,7 @@ service = Service(db)
 def index():
     """Page for viewing all references."""
     if request.method == 'GET':
-        references = service.get_db_contents()
+        references = service.get_all_references()
         return render_template(
             'check_references.html',
             count=len(references),
@@ -17,7 +17,7 @@ def index():
         )
     else:
         ref_id = int(request.form["id"])
-        service.remove_from_db(ref_id)
+        service.delete_reference(ref_id)
         return redirect('/')
 
 @app.route('/type')
@@ -34,7 +34,7 @@ def send_reference():
         author = request.form['author']
         title = request.form['title']
         year = request.form['year']
-        service.save_to_db(author, title, year)
+        service.save_reference(author, title, year)
         return redirect('/')
 
 @app.route('/download', methods=['POST'])

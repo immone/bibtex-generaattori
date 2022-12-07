@@ -12,8 +12,8 @@ class TestReferenceList:
     def test_db_write_and_read(self):
         """Test adding a reference to the database and reading references."""
         with app.app_context():
-            self.services.save_to_db("Very Real", "Test Data", "2022")
-            assert self.services.get_db_contents() == [
+            self.services.save_reference("Very Real", "Test Data", "2022")
+            assert self.services.get_all_references() == [
                 Reference(
                     id=1,
                     author='Very Real',
@@ -26,15 +26,15 @@ class TestReferenceList:
     def test_db_remove_entry(self):
         """Test removing a reference from the database."""
         with app.app_context():
-            assert len(self.services.get_db_contents()) == 1
-            self.services.remove_from_db(1)
-            references = self.services.get_db_contents()
+            assert len(self.services.get_all_references()) == 1
+            self.services.delete_reference(1)
+            references = self.services.get_all_references()
             assert references == []
 
     def test_create_file(self):
         """Test bibtex-file is created and is correct"""
         with app.app_context():
-            self.services.save_to_db("Very Real", "Test Data", "2022")
+            self.services.save_reference("Very Real", "Test Data", "2022")
             self.services.create_bibtex_file()
             assert path.isfile('references.bib')
 

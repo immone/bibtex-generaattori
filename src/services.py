@@ -7,7 +7,7 @@ class Service:
     def __init__(self, database) -> None:
         self.database = database
 
-    def save_to_database(self, author: str, title: str, year: str):
+    def save_reference(self, author: str, title: str, year: str):
         """Save form data to database."""
         new = Reference(
             author=author,
@@ -19,7 +19,7 @@ class Service:
         self.database.session.add(new)  # pylint: disable=no-member
         self.database.session.commit()  # pylint: disable=no-member
 
-    def get_database_contents(self):
+    def get_all_references(self):
         """Get references from database"""
         return Reference.query.all()
 
@@ -33,7 +33,7 @@ class Service:
         with open('references.bib','w', encoding='utf-8') as file:
             file.write(text)
 
-    def remove_from_database(self, ref_id: int):
+    def delete_reference(self, ref_id: int):
         """Remove reference from database"""
         reference = Reference.query.filter_by(id=ref_id).one()
         self.database.session.delete(reference) # pylint: disable=no-member
