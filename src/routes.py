@@ -1,15 +1,15 @@
 """Module for all different routes of the app."""
-from flask import render_template, request, redirect
-from init import app
-from services import Services
+from flask import render_template, request, redirect, send_file
+from init import app, db
+from services import Service
 
-service = Services()
+service = Service(db)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     """Page for viewing all references."""
     if request.method == 'GET':
-        references = service.get_db_contents()
+        references = service.get_all_references()
         return render_template(
             'check_references.html',
             count=len(references),
@@ -17,8 +17,13 @@ def index():
         )
     else:
         ref_id = int(request.form["id"])
-        service.remove_from_db(ref_id)
+        service.delete_reference(ref_id)
         return redirect('/')
+
+@app.route('/type')
+def choose_reference_type():
+    """Page for choosing refence type."""
+    return render_template('choose_reference_type.html')
 
 @app.route('/edit', methods=['GET', 'POST'])
 def send_reference():
@@ -29,12 +34,11 @@ def send_reference():
         author = request.form['author']
         title = request.form['title']
         year = request.form['year']
-        service.save_to_db(author, title, year)
+        service.save_reference(author, title, year)
         return redirect('/')
 
 @app.route('/download', methods=['POST'])
 def download_references():
     """Download all references."""
-    #Download functionality here
-    print('Downloading references...')
-    return redirect('/')
+    service.create_bibtex_file()
+    return send_file('references.bib', as_attachment=True)

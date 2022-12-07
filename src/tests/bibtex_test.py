@@ -1,6 +1,7 @@
 """Bibtex conversion related unit tests."""
 from init import Reference, Type, app # pylint: disable=unused-import
 
+
 class TestReference:
     """Tests for reference class."""
     def test_all_data_valid_to_bibtex(self):
