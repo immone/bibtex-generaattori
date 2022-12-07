@@ -1,13 +1,13 @@
 """Module for database actions"""
-from init import Reference 
+from init import Reference
 
 
-class Services:
+class Service:
     """Class for database actions"""
-    def __init__(self, db) -> None:
-        self.db = db
+    def __init__(self, database) -> None:
+        self.database = database
 
-    def save_to_db(self, author: str, title: str, year: str):
+    def save_to_database(self, author: str, title: str, year: str):
         """Save form data to database."""
         new = Reference(
             author=author,
@@ -16,10 +16,10 @@ class Services:
             year=year,
             type_id=1
         )
-        self.db.session.add(new)  # pylint: disable=no-member
-        self.db.session.commit()  # pylint: disable=no-member
+        self.database.session.add(new)  # pylint: disable=no-member
+        self.database.session.commit()  # pylint: disable=no-member
 
-    def get_db_contents(self):
+    def get_database_contents(self):
         """Get references from database"""
         return Reference.query.all()
 
@@ -30,11 +30,11 @@ class Services:
         for reference in references:
             text += reference.to_bibtex() + '\n\n'
 
-        with open('references.bib', 'w') as file:
+        with open('references.bib','w', encoding='utf-8') as file:
             file.write(text)
-  
-    def remove_from_db(self, ref_id: int):
+
+    def remove_from_database(self, ref_id: int):
         """Remove reference from database"""
         reference = Reference.query.filter_by(id=ref_id).one()
-        self.db.session.delete(reference) # pylint: disable=no-member
-        self.db.session.commit() # pylint: disable=no-member
+        self.database.session.delete(reference) # pylint: disable=no-member
+        self.database.session.commit() # pylint: disable=no-member
