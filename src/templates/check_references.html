@@ -3,7 +3,6 @@
 <title>Bibtex generaattori</title>
 <h1>Bibtex generaattori</h1>
 <h3>Tervetuloa bibtex generaattoriin.</h3>
-<a href="/edit">Tallenna uusi referenssi</a>
 
 <h1>Tallennetut viitteet</h1>
 <hr>
@@ -13,18 +12,26 @@
         <th scope="col">Author</th>
         <th scope="col">Title</th>
         <th scope="col">Year</th>
+        <th scope="col"></th> <!-- Empty column header for remove button -->
       </tr>
     </thead>
     <tbody>
     {% for citation in citations %}
-      <tr>
+    <tr>
         <td>{{ citation.author }}</td>
         <td>{{ citation.title }}</td>
         <td>{{ citation.year }}</td>
-      </tr>
-      {% endfor %}
+        <td>
+            <form action="/" method="POST">
+                <!-- If more post request actions are added, add a form field here that tells that this button is for the remove action -->
+                <input type="hidden" name="id" value="{{ citation.id }}">
+                <button type="submit" class="btn btn-primary">Remove</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
     </tbody>
-  </table>
+</table>
 <hr>
 
 {% endblock %}
