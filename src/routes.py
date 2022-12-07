@@ -31,3 +31,10 @@ def send_reference():
         year = request.form['year']
         service.save_to_db(author, title, year)
         return redirect('/')
+
+@app.route('/download', methods=['POST'])
+def download_references():
+    """Download all references."""
+    #Download functionality here
+    print('Downloading references...')
+    return redirect('/')
