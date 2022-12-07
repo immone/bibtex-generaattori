@@ -1,15 +1,14 @@
 """Module for database actions"""
 from init import Reference 
 
+
 class Services:
     """Class for database actions"""
     def __init__(self, db) -> None:
         self.db = db
 
-
-    def save_to_db(self, author, title, year):
+    def save_to_db(self, author: str, title: str, year: str):
         """Save form data to database."""
-        print('Save to db', author, title, year)
         new = Reference(
             author=author,
             title=title,
@@ -19,7 +18,6 @@ class Services:
         )
         self.db.session.add(new)  # pylint: disable=no-member
         self.db.session.commit()  # pylint: disable=no-member
-
 
     def get_db_contents(self):
         """Get references from database"""
@@ -34,5 +32,9 @@ class Services:
 
         with open('references.bib', 'w') as file:
             file.write(text)
-
-    
+  
+    def remove_from_db(self, ref_id: int):
+        """Remove reference from database"""
+        reference = Reference.query.filter_by(id=ref_id).one()
+        self.db.session.delete(reference) # pylint: disable=no-member
+        self.db.session.commit() # pylint: disable=no-member
