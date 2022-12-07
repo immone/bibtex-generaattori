@@ -8,10 +8,9 @@ from dotenv import load_dotenv
 # Initialize Flask app
 app = Flask(__name__)
 load_dotenv()
-app.secret_key = getenv('SECRET_KEY')
 
 # Initialize db
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = getenv('SQLALCHEMY_DATABASE_URI', 'sqlite:///app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -35,7 +34,6 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
         year = self.year if self.year else ''
         return f'{id_}{author_surname}{year}'
 
-
     def to_bibtex(self) -> str:
         """Get reference in bibtex form."""
         ref_type = Type.query.filter_by(id=self.type_id).first()
@@ -47,6 +45,15 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
             f'year={"{"}{self.year if self.year else ""}{"}}"}'
         )
 
+    def __eq__(self, other) -> bool:
+        """Reference object fields comparison (normal == operator would compare memory location)."""
+        id_eq = self.id == other.id
+        author_eq = self.author == other.author
+        title_eq = self.title == other.title
+        booktitle_eq = self.booktitle == other.booktitle
+        year_eq = self.year == other.year
+        type_eq = self.type_id == other.type_id
+        return id_eq and author_eq and title_eq and booktitle_eq and year_eq and type_eq
 
 class Type(db.Model):  # pylint: disable=too-few-public-methods
     """ORM database table for reference types."""
