@@ -15,21 +15,21 @@
       </tr>
     </thead>
     <tbody>
-    {% for citation in citations %}
+    {% for reference in references %}
     <tr>
-        <td>{{ citation.author }}</td>
-        <td>{{ citation.title }}</td>
-        <td>{{ citation.year }}</td>
+        <td>{{ reference.author }}</td>
+        <td>{{ reference.title }}</td>
+        <td>{{ reference.year }}</td>
         <td>
             <form action="/" method="POST">
                 <!-- If more post request actions are added, add a form field here that tells that this button is for the remove action -->
-                <input type="hidden" name="id" value="{{ citation.id }}">
+                <input type="hidden" name="id" value="{{ reference.id }}">
 				<button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash3"></i></button>
 				<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
 					<div class="modal-content">
 					  <div class="modal-header">
-						<h5 class="modal-title" id="deleteModalLabel">Delete reference "reference.name"?</h5>
+						  <h5 class="modal-title" id="deleteModalLabel">Delete reference {{ reference.title }} ?</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					  </div>
 					  <div class="modal-body">

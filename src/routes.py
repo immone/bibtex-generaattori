@@ -9,11 +9,11 @@ service = Services()
 def index():
     """Page for viewing all references."""
     if request.method == 'GET':
-        citations = service.get_db_contents()
+        references = service.get_db_contents()
         return render_template(
             'check_references.html',
-            count=len(citations),
-            citations=citations
+            count=len(references),
+            references=references
         )
     else:
         ref_id = int(request.form["id"])
