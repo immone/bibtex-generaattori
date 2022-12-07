@@ -2,13 +2,15 @@
 from flask import render_template, request, redirect
 from init import app
 from services import Services
+from init import db
 
-service = Services()
+service = Services(db)
 
 @app.route('/')
 def index():
     """Page for viewing all references."""
     citations = service.get_db_contents()
+    service.create_bibtex_file()
     return render_template(
         'check_references.html',
         count=len(citations),
