@@ -36,15 +36,12 @@ def send_reference(ref_type: str):
         return render_template('send_reference.html', ref_type=ref_type)
     else:
         ref_type = request.form['ref_type']
-        if ref_type == "inCollection":
-            author = request.form['author']
-            title = request.form['title']
-            year = request.form['year']
+        author = request.form['author']
+        title = request.form['title']
+        year = request.form['year']
+        if ref_type == "inCollection":    
             service.save_reference(author, title, year)
         if ref_type == "book":
-            author = request.form['author']
-            title = request.form['title']
-            year = request.form['year']
             booktitle = request.form['booktitle']
             pagenumber = request.form['pagenumber']
             service.save_reference_book(author, title, year, booktitle, pagenumber)
