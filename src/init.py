@@ -43,7 +43,8 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
             f'author={"{"}{self.author if self.author else ""}{"}"},'
             f'title={"{"}{self.title if self.title else ""}{"}"},'
             f'booktitle={"{"}{self.booktitle if self.booktitle else ""}{"}"},'
-            f'year={"{"}{self.year if self.year else ""}{"}}"}'
+            f'year={"{"}{self.year if self.year else ""}{"}"}'
+            f'pages={"{"}{self.pagenumber if self.pagenumber else ""}{"}}"}'
         )
 
     def __eq__(self, other) -> bool:
