@@ -22,8 +22,9 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     author = db.Column(db.String)
     title = db.Column(db.String)
-    booktitle = db.Column(db.String)
+    booktitle = db.Column(db.String, default="")
     year = db.Column(db.Integer)
+    pagenumber = db.Column(db.Integer, default="")
     type_id = db.Column(db.Integer,db.ForeignKey('type.id'))
 
     def get_reference_tag(self) -> str:
@@ -52,6 +53,7 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
         title_eq = self.title == other.title
         booktitle_eq = self.booktitle == other.booktitle
         year_eq = self.year == other.year
+        pagenumber_eq = self.pagenumber == other.pagenumber
         type_eq = self.type_id == other.type_id
         return id_eq and author_eq and title_eq and booktitle_eq and year_eq and type_eq
 

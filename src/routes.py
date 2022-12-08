@@ -35,11 +35,20 @@ def send_reference(ref_type: str):
     if request.method == 'GET':
         return render_template('send_reference.html', ref_type=ref_type)
     else:
-        author = request.form['author']
-        title = request.form['title']
-        year = request.form['year']
-        service.save_reference(author, title, year)
-        return redirect('/')
+        ref_type = request.form['ref_type']
+        if ref_type == "inCollection":
+            author = request.form['author']
+            title = request.form['title']
+            year = request.form['year']
+            service.save_reference(author, title, year)
+        if ref_type == "book":
+            author = request.form['author']
+            title = request.form['title']
+            year = request.form['year']
+            booktitle = request.form['booktitle']
+            pagenumber = request.form['pagenumber']
+            service.save_reference_book(author, title, year, booktitle, pagenumber)            
+    return redirect('/')
 
 @app.route('/download', methods=['POST'])
 def download_references():

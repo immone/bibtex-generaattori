@@ -8,13 +8,25 @@ class Service:
         self.database = database
 
     def save_reference(self, author: str, title: str, year: str):
-        """Save form data to database."""
+        """Save form data for inCollection type to database."""
         new = Reference(
             author=author,
             title=title,
-            booktitle=None,
             year=year,
             type_id=1
+        )
+        self.database.session.add(new)  # pylint: disable=no-member
+        self.database.session.commit()  # pylint: disable=no-member
+
+    def save_reference_book(self, author: str, title: str, year: str, booktitle: str, pagenumber: str):
+        """Save form data book type to database."""
+        new = Reference(
+            author=author,
+            title=title,
+            booktitle=booktitle,
+            year=year,
+            pagenumber=pagenumber,
+            type_id=2
         )
         self.database.session.add(new)  # pylint: disable=no-member
         self.database.session.commit()  # pylint: disable=no-member
