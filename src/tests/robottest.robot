@@ -14,12 +14,22 @@ Go To Send Page And Check Title
 
 Go To Send Page And Send Reference
     Go To Send Page
-    Input Text  name=author  Mikael Agricola
-    Input Text  name=title  Abckiria
-    Input Text  name=year  1543
-    Click Button  submit
+    Send Reference  Mikael Agricola  Abckiria  1543
     Main Page Should Be Open
-    Go To References
     Page Should Contain  Mikael Agricola
     Page Should Contain  Abckiria
     Page Should Contain  1543
+    Delete Reference
+
+Download References
+    Go To Main Page
+    Click Button  download
+    File Should Exist  ~/Downloads/references.bib
+
+Delete Reference
+    Go To Send Page
+    Send Reference  Mika Waltari  Sinuhe Egyptiläinen  1945
+    Delete Reference
+    Page Should Not Contain  Mika Waltari
+    Page Should Not Contain  Sinuhe Egyptiläinen
+    Page Should Not Contain  1945
