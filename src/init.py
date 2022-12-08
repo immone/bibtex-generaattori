@@ -22,9 +22,9 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     author = db.Column(db.String)
     title = db.Column(db.String)
-    booktitle = db.Column(db.String, default="")
+    booktitle = db.Column(db.String)
     year = db.Column(db.Integer)
-    pagenumber = db.Column(db.Integer, default="")
+    pagenumber = db.Column(db.Integer)
     type_id = db.Column(db.Integer,db.ForeignKey('type.id'))
 
     def get_reference_tag(self) -> str:
@@ -55,7 +55,8 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
         year_eq = self.year == other.year
         pagenumber_eq = self.pagenumber == other.pagenumber
         type_eq = self.type_id == other.type_id
-        return id_eq and author_eq and title_eq and booktitle_eq and year_eq and type_eq
+        return (id_eq and author_eq and title_eq and booktitle_eq and
+                year_eq and type_eq and pagenumber_eq)
 
 class Type(db.Model):  # pylint: disable=too-few-public-methods
     """ORM database table for reference types."""

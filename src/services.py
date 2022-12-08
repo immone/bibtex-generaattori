@@ -18,7 +18,10 @@ class Service:
         self.database.session.add(new)  # pylint: disable=no-member
         self.database.session.commit()  # pylint: disable=no-member
 
-    def save_reference_book(self, author: str, title: str, year: str, booktitle: str, pagenumber: str):
+    def save_reference_book(
+        self, author: str, title: str, year: str, booktitle: str,
+        pagenumber: str
+    ): # pylint: disable=too-many-arguments
         """Save form data book type to database."""
         new = Reference(
             author=author,

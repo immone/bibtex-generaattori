@@ -2,7 +2,6 @@
 {% block content %}
 <title>Tallenna viite</title>
 <h1>Tallenna viite</h1>
-{{ref_type}}
 {% if ref_type == "inCollection" %}
 <form action='/edit/<ref_type>' method="POST">
   <input type="hidden" name="ref_type" value="inCollection">
