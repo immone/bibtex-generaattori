@@ -46,4 +46,3 @@ def download_references():
     """Download all references."""
     service.create_bibtex_file()
     return send_file('references.bib', as_attachment=True)
-    
