@@ -26,6 +26,7 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
     booktitle = db.Column(db.String)
     year = db.Column(db.Integer)
     type_id = db.Column(db.Integer, db.ForeignKey('type.id'))
+    type = db.relationship('Type')
 
     def get_reference_tag(self) -> str:
         """Generate citing tag, id + author surname + year."""
