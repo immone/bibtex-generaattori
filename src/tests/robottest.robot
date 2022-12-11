@@ -25,12 +25,6 @@ Go To Send Page And Send Reference
     Page Should Contain  1543
     Delete Reference
 
-Download References
-    Go To Main Page
-    Click Button  download
-    Sleep  5s
-    File Should Exist  ~/Downloads/references.bib
-
 Delete Reference
     Go To Send Page
     Select From List By Value  name:type  inCollection
