@@ -5,9 +5,9 @@ Library  OperatingSystem
 *** Variables ***
 ${SERVER}  localhost:5000
 ${BROWSER}  chrome
-${DELAY}  0.5 seconds
+${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}
-${SEND URL}  http://${SERVER}/edit
+${SEND URL}  http://${SERVER}/type
 
 *** Keywords ***
 Open And Configure Browser

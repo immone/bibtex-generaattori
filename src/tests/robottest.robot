@@ -10,10 +10,14 @@ Go To Main Page And Check Title
 
 Go To Send Page And Check Title
     Go To Send Page
+    Select From List By Value  name:type  inCollection
+    Click Button  submit
     Send Page Should Be Open
 
 Go To Send Page And Send Reference
     Go To Send Page
+    Select From List By Value  name:type  inCollection
+    Click Button  submit
     Send Reference  Mikael Agricola  Abckiria  1543
     Main Page Should Be Open
     Page Should Contain  Mikael Agricola
@@ -28,6 +32,8 @@ Download References
 
 Delete Reference
     Go To Send Page
+    Select From List By Value  name:type  inCollection
+    Click Button  submit
     Send Reference  Mika Waltari  Sinuhe Egyptiläinen  1945
     Delete Reference
     Page Should Not Contain  Mika Waltari
