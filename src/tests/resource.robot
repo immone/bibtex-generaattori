@@ -37,3 +37,8 @@ Send Reference
 Delete Reference
     Click Button  name:delete
     Click Button  name:delete_check
+
+Download References
+    Go To Main Page
+    Click Button  download
+    File Should Exist  ~/Downloads/references.bib
