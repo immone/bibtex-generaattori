@@ -28,6 +28,7 @@ Go To Send Page And Send Reference
 Download References
     Go To Main Page
     Click Button  download
+    Sleep  5s
     File Should Exist  ~/Downloads/references.bib
 
 Delete Reference
