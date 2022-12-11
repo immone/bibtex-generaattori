@@ -4,8 +4,8 @@ Library  OperatingSystem
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${BROWSER}  chrome
-${DELAY}  0 seconds
+${BROWSER}  headlesschrome
+${DELAY}  0.1 seconds
 ${HOME URL}  http://${SERVER}
 ${SEND URL}  http://${SERVER}/type
 
@@ -35,5 +35,5 @@ Send Reference
     Click Button  submit
 
 Delete Reference
-    Click Button  delete
-    Click Button  delete_check
+    Click Button  name:delete
+    Click Button  name:delete_check
