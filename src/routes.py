@@ -20,22 +20,32 @@ def index():
         service.delete_reference(ref_id)
         return redirect('/')
 
-@app.route('/type')
+@app.route('/type', methods=['GET', 'POST'])
 def choose_reference_type():
-    """Page for choosing refence type."""
-    return render_template('choose_reference_type.html')
+    """Page for choosing reference type."""
+    if request.method == 'GET':
+        return render_template('choose_reference_type.html')
+    else:
+        ref_type = request.form['type']
+        return redirect(f'/edit/{ref_type}')
 
-@app.route('/edit', methods=['GET', 'POST'])
-def send_reference():
+@app.route('/edit/<ref_type>', methods=['GET', 'POST'])
+def send_reference(ref_type: str):
     """New reference page."""
     if request.method == 'GET':
-        return render_template('send_reference.html')
+        return render_template('send_reference.html', ref_type=ref_type)
     else:
+        ref_type = request.form['ref_type']
         author = request.form['author']
         title = request.form['title']
         year = request.form['year']
-        service.save_reference(author, title, year)
-        return redirect('/')
+        if ref_type == "inCollection":    
+            service.save_reference(author, title, year)
+        if ref_type == "book":
+            booktitle = request.form['booktitle']
+            pagenumber = request.form['pagenumber']
+            service.save_reference_book(author, title, year, booktitle, pagenumber)
+    return redirect('/')
 
 @app.route('/download', methods=['POST'])
 def download_references():
