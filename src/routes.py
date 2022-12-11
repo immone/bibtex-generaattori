@@ -39,7 +39,7 @@ def send_reference(ref_type: str):
         author = request.form['author']
         title = request.form['title']
         year = request.form['year']
-        if ref_type == "inCollection":    
+        if ref_type == "inCollection":
             service.save_reference(author, title, year)
         if ref_type == "book":
             booktitle = request.form['booktitle']
