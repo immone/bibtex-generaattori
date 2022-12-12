@@ -25,8 +25,11 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
     title = db.Column(db.String)
     booktitle = db.Column(db.String)
     year = db.Column(db.Integer)
-    type_id = db.Column(db.Integer, db.ForeignKey('type.id'))
+
+    pages = db.Column(db.Integer)
+    type_id = db.Column(db.Integer,db.ForeignKey('type.id'))
     type = db.relationship('Type')
+
 
     def get_reference_tag(self) -> str:
         """Generate citing tag, id + author surname + year."""
@@ -44,7 +47,8 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
             f'author={"{"}{self.author if self.author else ""}{"}"},'
             f'title={"{"}{self.title if self.title else ""}{"}"},'
             f'booktitle={"{"}{self.booktitle if self.booktitle else ""}{"}"},'
-            f'year={"{"}{self.year if self.year else ""}{"}}"}'
+            f'year={"{"}{self.year if self.year else ""}{"}"},'
+            f'pages={"{"}{self.pages if self.pages else ""}{"}}"}'
         )
 
     def __eq__(self, other) -> bool:
@@ -54,10 +58,11 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
         title_eq = self.title == other.title
         booktitle_eq = self.booktitle == other.booktitle
         year_eq = self.year == other.year
+        pages_eq = self.pages == other.pages
         type_eq = self.type_id == other.type_id
-        equality = (id_eq and author_eq and title_eq
-                    and booktitle_eq and year_eq and type_eq)
-        return equality
+
+        return (id_eq and author_eq and title_eq and booktitle_eq and
+                year_eq and type_eq and pages_eq)
 
 
 class Type(db.Model):  # pylint: disable=too-few-public-methods

@@ -3,6 +3,7 @@ from os import remove, path
 from init import app, db, Reference
 from services import Service
 
+
 class TestReferenceList:
     """Tests for reference list functionality."""
     def setup_method(self):
@@ -43,7 +44,7 @@ class TestReferenceList:
                 should_be = (
                     '@InCollection{1Real2022,author={Very Real},'
                     'title={Test Data},'
-                    'booktitle={},year={2022}}'
+                    'booktitle={},year={2022},pages={}}'
                 ).strip()
 
                 assert bibtex_file == should_be

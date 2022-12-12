@@ -11,6 +11,8 @@
       <th scope="col">Author</th>
       <th scope="col">Title</th>
       <th scope="col">Year</th>
+      <th scope="col">Book title</th>
+      <th scope="col">Page(s)</th>
       <th scope="col"></th> <!-- Empty column header for remove button -->
     </tr>
   </thead>
@@ -20,6 +22,17 @@
     <td>{{ reference.author }}</td>
     <td>{{ reference.title }}</td>
     <td>{{ reference.year }}</td>
+    <!-- This is a mess, maybe move to separate tables for different reference types --->
+    {% if reference.booktitle %}
+    <td>{{ reference.booktitle }}</td>
+    {% else %}
+    <td></td>
+    {% endif %}
+    {% if reference.pages %}
+    <td>{{ reference.pages }}</td>
+    {% else %}
+    <td></td>
+    {% endif %}
     <td>
       <form action="/" method="POST">
         <!-- If more post request actions are added, add a form field here that tells that this button is for the remove action -->

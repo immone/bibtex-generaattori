@@ -4,10 +4,10 @@ Library  OperatingSystem
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${BROWSER}  chrome
-${DELAY}  0.5 seconds
+${BROWSER}  headlesschrome
+${DELAY}  0.1 seconds
 ${HOME URL}  http://${SERVER}
-${SEND URL}  http://${SERVER}/edit
+${SEND URL}  http://${SERVER}/type
 
 *** Keywords ***
 Open And Configure Browser
@@ -35,5 +35,10 @@ Send Reference
     Click Button  submit
 
 Delete Reference
-    Click Button  delete
-    Click Button  delete_check
+    Click Button  name:delete
+    Click Button  name:delete_check
+
+Download References
+    Go To Main Page
+    Click Button  download
+    File Should Exist  ~/Downloads/references.bib
