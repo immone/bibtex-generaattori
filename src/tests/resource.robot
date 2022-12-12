@@ -27,11 +27,20 @@ Main Page Should Be Open
 Send Page Should Be Open
     Title Should Be  Tallenna viite
 
-Send Reference
+Send inCollection Reference
     [Arguments]  ${AUTHOR}  ${TITLE}  ${YEAR}
     Input Text  name=author  ${AUTHOR}
     Input Text  name=title  ${TITLE}
     Input Text  name=year  ${YEAR}
+    Click Button  submit
+
+Send Book Reference
+    [Arguments]  ${AUTHOR}  ${TITLE}  ${BOOK_TITLE}  ${YEAR}  ${PAGENUMBER}
+    Input Text  name=author  ${AUTHOR}
+    Input Text  name=title  ${TITLE}
+    Input Text  name=booktitle  ${BOOK_TITLE}
+    Input Text  name=year  ${YEAR}
+    Input Text  name=pagenumber  ${PAGENUMBER}
     Click Button  submit
 
 Delete Reference
