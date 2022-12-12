@@ -10,7 +10,8 @@ app = Flask(__name__)
 load_dotenv()
 
 # Initialize db
-app.config['SQLALCHEMY_DATABASE_URI'] = getenv('SQLALCHEMY_DATABASE_URI', 'sqlite:///app.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = getenv('SQLALCHEMY_DATABASE_URI',
+                                               'sqlite:///app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -24,8 +25,11 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
     title = db.Column(db.String)
     booktitle = db.Column(db.String)
     year = db.Column(db.Integer)
+
     pages = db.Column(db.Integer)
     type_id = db.Column(db.Integer,db.ForeignKey('type.id'))
+    type = db.relationship('Type')
+
 
     def get_reference_tag(self) -> str:
         """Generate citing tag, id + author surname + year."""
@@ -48,7 +52,7 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
         )
 
     def __eq__(self, other) -> bool:
-        """Reference object fields comparison (normal == operator would compare memory location)."""
+        """Compare reference instead of the memory address."""
         id_eq = self.id == other.id
         author_eq = self.author == other.author
         title_eq = self.title == other.title
@@ -56,8 +60,10 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
         year_eq = self.year == other.year
         pages_eq = self.pages == other.pages
         type_eq = self.type_id == other.type_id
+
         return (id_eq and author_eq and title_eq and booktitle_eq and
                 year_eq and type_eq and pages_eq)
+
 
 class Type(db.Model):  # pylint: disable=too-few-public-methods
     """ORM database table for reference types."""
