@@ -44,7 +44,13 @@ def send_reference(ref_type: str):
         if ref_type == "book":
             booktitle = request.form['booktitle']
             pagenumber = request.form['pagenumber']
-            service.save_reference_book(author, title, year, booktitle, pagenumber)
+            service.save_reference_book(
+                author,
+                title,
+                year,
+                booktitle,
+                pagenumber
+            )
     return redirect('/')
 
 @app.route('/download', methods=['POST'])
