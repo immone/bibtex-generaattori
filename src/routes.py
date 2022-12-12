@@ -2,6 +2,7 @@
 from flask import render_template, request, redirect, send_file
 from init import app, db
 from services import Service
+import os
 
 service = Service(db)
 
@@ -52,3 +53,15 @@ def download_references():
     """Download all references."""
     service.create_bibtex_file()
     return send_file('references.bib', as_attachment=True)
+
+@app.route('/doi2bib', methods=['GET', 'POST'])
+def doi2bib():
+    """Get reference info from Doi-number"""
+    if request.method == 'GET':
+        return render_template('doi.html')
+    else:
+        doi_number = request.form['doinumber']
+        request_command = 'doi2bib'
+        request_command += doi_number
+        print(request_command)
+        #os.system(request_command)
