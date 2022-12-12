@@ -24,7 +24,7 @@ class Reference(db.Model):  # pylint: disable=too-few-public-methods
     title = db.Column(db.String)
     booktitle = db.Column(db.String)
     year = db.Column(db.Integer)
-    pagenumber = db.Column(db.Integer)
+    pages = db.Column(db.Integer)
     type_id = db.Column(db.Integer,db.ForeignKey('type.id'))
 
     def get_reference_tag(self) -> str:
