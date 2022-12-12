@@ -19,3 +19,5 @@
 - Koodi noudattaa yhtenäistä tyyliä (pylint käytössä)
 - Asiakas hyväksyy uusimman version
 
+
+
